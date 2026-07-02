@@ -36,6 +36,9 @@ namespace S26Week8DisconnectedModel
             pk[0] = _tbl.Columns["ProductID"]!;
             pk[0].AutoIncrement = true;
             _tbl.PrimaryKey = pk;
+
+            // initialize the SqlCommandBuilder
+            _cmdBuilder = new SqlCommandBuilder(_adp);
         }
 
         public DataTable GetAllProducts()
@@ -48,6 +51,18 @@ namespace S26Week8DisconnectedModel
         {
             var row = _tbl.Rows.Find(id);
             return row;
+        }
+
+        public void InsertProduct(string name, decimal price, int quantity)
+        {
+            var row = _tbl.NewRow();
+            row["ProductName"] = name;
+            row["UnitPrice"] = price;
+            row["UnitsInStock"] = quantity;
+            _tbl.Rows.Add(row);  // required
+
+            _adp.InsertCommand = _cmdBuilder.GetInsertCommand();
+            _adp.Update(_tbl);
         }
     }
 }
