@@ -18,6 +18,8 @@ namespace S26Week8DisconnectedModel
         {
             _conn = new SqlConnection(Data.GetConnectionString());
             _ds = new DataSet();
+
+            InitProducts();
         }
 
         private void InitProducts()
@@ -29,7 +31,14 @@ namespace S26Week8DisconnectedModel
 
             _tbl = _ds.Tables["Products"]!;
 
+            // define the primary key
 
+        }
+
+        public DataTable GetAllProducts()
+        {
+            InitProducts();
+            return _tbl;
         }
     }
 }
