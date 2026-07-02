@@ -40,5 +40,11 @@ namespace S26Week8DisconnectedModel
             InitProducts();
             return _tbl;
         }
+
+        public DataRow? GetProductById(int id)
+        {
+            var row = _tbl.Rows.Find(id);
+            return row;
+        }
     }
 }
