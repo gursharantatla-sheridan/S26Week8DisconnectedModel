@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="DataSetWithMultipleTables" Height="450" Width="800">
     <Grid>
-        <Button x:Name="btnLoad" Content="Load" HorizontalAlignment="Left" Margin="37,33,0,0" VerticalAlignment="Top" Height="53" Width="106"/>
+        <Button x:Name="btnLoad" Content="Load" HorizontalAlignment="Left" Margin="37,33,0,0" VerticalAlignment="Top" Height="53" Width="106" Click="btnLoad_Click"/>
         <DataGrid x:Name="grdCategories" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="37,115,419,50"/>
         <DataGrid x:Name="grdProducts" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="424,115,32,50"/>
 

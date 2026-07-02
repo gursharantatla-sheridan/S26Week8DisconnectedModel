@@ -9,6 +9,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data;
+using Microsoft.Data.SqlClient;
 
 namespace S26Week8DisconnectedModel
 {
@@ -20,6 +22,24 @@ namespace S26Week8DisconnectedModel
         public DataSetWithMultipleTables()
         {
             InitializeComponent();
+        }
+
+        private void btnLoad_Click(object sender, RoutedEventArgs e)
+        {
+            SqlConnection conn = new SqlConnection(Data.GetConnectionString());
+
+            string query = "select * from Categories; select * from Products";
+            SqlDataAdapter adp = new SqlDataAdapter(query, conn);
+
+            DataSet ds = new DataSet();
+
+            adp.Fill(ds);
+
+            ds.Tables[0].TableName = "Categories";
+            ds.Tables[1].TableName = "Products";
+
+            grdCategories.ItemsSource = ds.Tables["Categories"]!.DefaultView;
+            grdProducts.ItemsSource = ds.Tables["Products"]!.DefaultView;
         }
     }
 }
