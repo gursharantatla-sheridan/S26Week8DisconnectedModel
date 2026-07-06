@@ -84,5 +84,20 @@ namespace S26Week8DisconnectedModel
             _adp.DeleteCommand = _cmdBuilder.GetDeleteCommand();
             _adp.Update(_tbl);
         }
+
+        public DataTable GetProductsByName(string name)
+        {
+            string query = "select ProductID, ProductName, UnitPrice, UnitsInStock from Products where ProductName = @pName";
+
+            SqlCommand cmd = new SqlCommand(query, _conn);
+            cmd.Parameters.AddWithValue("pName", name);
+
+            SqlDataAdapter adp = new SqlDataAdapter(cmd);
+
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+
+            return ds.Tables[0];
+        }
     }
 }
