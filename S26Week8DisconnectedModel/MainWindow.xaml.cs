@@ -105,6 +105,13 @@ namespace S26Week8DisconnectedModel
             cmbCategories.ItemsSource = crud.GetCategories().DefaultView;
 
             cmbCategories.DisplayMemberPath = "CategoryName";
+            cmbCategories.SelectedValuePath = "CategoryID";
+        }
+
+        private void cmbCategories_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int catId = (int)cmbCategories.SelectedValue;
+            grdProducts.ItemsSource = crud.GetProductsByCategory(catId).DefaultView;
         }
     }
 }
