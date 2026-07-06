@@ -99,5 +99,16 @@ namespace S26Week8DisconnectedModel
 
             return ds.Tables[0];
         }
+
+        public DataTable GetCategories()
+        {
+            string query = "select * from Categories";
+            SqlDataAdapter adp = new SqlDataAdapter(query, _conn);
+
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+
+            return ds.Tables[0];
+        }
     }
 }
