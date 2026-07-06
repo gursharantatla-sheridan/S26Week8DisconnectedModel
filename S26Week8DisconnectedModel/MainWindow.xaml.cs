@@ -22,6 +22,8 @@ namespace S26Week8DisconnectedModel
         public MainWindow()
         {
             InitializeComponent();
+
+            LoadCategoriesInCombobox();
         }
 
         private void btnLoadAllProducts_Click(object sender, RoutedEventArgs e)
@@ -96,6 +98,13 @@ namespace S26Week8DisconnectedModel
         {
             string name = txtName.Text;
             grdProducts.ItemsSource = crud.GetProductsByName(name).DefaultView;
+        }
+
+        private void LoadCategoriesInCombobox()
+        {
+            cmbCategories.ItemsSource = crud.GetCategories().DefaultView;
+
+            cmbCategories.DisplayMemberPath = "CategoryName";
         }
     }
 }
