@@ -110,5 +110,19 @@ namespace S26Week8DisconnectedModel
 
             return ds.Tables[0];
         }
+
+        public DataTable GetProductsByCategory(int catId)
+        {
+            string query = "select ProductID, ProductName, CategoryID from Products where CategoryID = @catId";
+
+            SqlCommand cmd = new SqlCommand(query, _conn);
+            cmd.Parameters.AddWithValue("catId", catId);
+
+            SqlDataAdapter adp = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+
+            return ds.Tables[0];
+        }
     }
 }
