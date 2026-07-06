@@ -87,10 +87,10 @@ namespace S26Week8DisconnectedModel
 
         public DataTable GetProductsByName(string name)
         {
-            string query = "select ProductID, ProductName, UnitPrice, UnitsInStock from Products where ProductName = @pName";
+            string query = "select ProductID, ProductName, UnitPrice, UnitsInStock from Products where ProductName LIKE @pName";
 
             SqlCommand cmd = new SqlCommand(query, _conn);
-            cmd.Parameters.AddWithValue("pName", name);
+            cmd.Parameters.AddWithValue("pName", "%" + name + "%");
 
             SqlDataAdapter adp = new SqlDataAdapter(cmd);
 

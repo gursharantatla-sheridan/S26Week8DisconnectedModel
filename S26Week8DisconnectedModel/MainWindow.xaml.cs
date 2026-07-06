@@ -91,5 +91,11 @@ namespace S26Week8DisconnectedModel
             grdProducts.ItemsSource = crud.GetAllProducts().DefaultView;
             MessageBox.Show("Product deleted");
         }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            string name = txtName.Text;
+            grdProducts.ItemsSource = crud.GetProductsByName(name).DefaultView;
+        }
     }
 }
